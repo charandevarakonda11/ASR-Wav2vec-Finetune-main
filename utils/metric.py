@@ -1,10 +1,11 @@
-from datasets import load_metric
+# from datasets import load_metric
 import torch
+import evaluate
 
 class Metric:
     def __init__(self, processor):
         self.processor = processor
-        self.wer_metric = load_metric("wer")
+        self.wer_metric = evaluate.load("wer")
     def __call__(self, logits, labels):
         preds = torch.argmax(logits, axis=-1)
 

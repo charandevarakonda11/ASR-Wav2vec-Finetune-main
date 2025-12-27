@@ -15,7 +15,7 @@ class DefaultCollate:
         batch = self.processor(features, sampling_rate=16000, padding="longest", return_tensors="pt", return_attention_mask=True)
 
         with self.processor.as_target_processor():
-            labels_batch = self.processor(transcripts, padding="longest", return_tensors="pt")
+            labels_batch = self.processor.tokenizer(transcripts, padding="longest", return_tensors="pt")
 
         batch["labels"] = labels_batch["input_ids"].masked_fill(labels_batch.attention_mask.ne(1), -100)
         return batch
