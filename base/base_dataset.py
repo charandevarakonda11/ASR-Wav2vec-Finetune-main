@@ -80,6 +80,14 @@ class BaseDataset(Dataset):
 
     def load_data(self, path, delimiter) -> pd.DataFrame:
         df = pd.read_csv(path, delimiter = delimiter)
+        # df = pd.read_csv(
+        #     path,
+        #     delimiter=delimiter,
+        #     encoding="utf-8",
+        #     encoding_errors="ignore",
+        #     keep_default_na=False,   # 🔥 prevents NaN
+        #     dtype=str                # 🔥 forces string
+        # )
         return df
 
     def get_data(self) -> Dataset:
